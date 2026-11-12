@@ -1,0 +1,10 @@
+﻿namespace ViewTask.Services
+{
+    public class SimpleTimeService : ITimeService
+    {
+        public string GetTimeForTomorrow()
+        {
+            return DateTime.Now.AddDays(1).ToString("dd.MM.yyyy HH:mm");
+        }
+    }
+}

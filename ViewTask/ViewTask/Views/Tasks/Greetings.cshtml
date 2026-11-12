@@ -1,0 +1,27 @@
+﻿@{
+    ViewData["Title"] = "Greetings";
+
+    string morningMessage = "Good morning!";
+    string afternoonMessage = "Good afternoon!";
+    string eveningMessage = "Good evening!";
+
+    DateTime now = DateTime.Now;
+    string greeting;
+
+    if (now.Hour < 12)
+    {
+        greeting = morningMessage;
+    }
+    else if (now.Hour < 18)
+    {
+        greeting = afternoonMessage;
+    }
+    else
+    {
+        greeting = eveningMessage;
+    }
+}
+
+<h2>@greeting</h2>
+<p>Today is @now.DayOfWeek, @now.ToLongDateString()</p>
+<p>Current time: @now.ToShortTimeString()</p>

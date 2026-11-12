@@ -1,0 +1,4 @@
+﻿@using ViewTask.Services
+@inject ITimeService TimeService
+
+<p>Time to go shopping tomorrow: <strong>@TimeService.GetTimeForTomorrow()</strong></p>

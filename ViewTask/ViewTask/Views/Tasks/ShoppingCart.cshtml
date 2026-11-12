@@ -1,0 +1,49 @@
+﻿@{
+    ViewData["Title"] = "Shopping Cart";
+    var markets = (List<string>)ViewBag.SuperMarkets;
+    var products = (List<string>)ViewBag.Products;
+}
+
+<h2>Shopping Cart</h2>
+
+@using (Html.BeginForm("ShoppingCart", "Tasks", FormMethod.Post))
+{
+    <div class="mb-2">
+        @Html.Label("customerName", "Name:")
+        @Html.TextBox("customerName")
+    </div>
+
+    <div class="mb-2">
+        @Html.Label("address", "Address:")
+        @Html.TextBox("address")
+    </div>
+
+    <div class="mb-2">
+        @Html.Label("supermarket", "Supermarket:")
+        @Html.DropDownList("supermarket", new SelectList(markets))
+    </div>
+
+    <div class="mb-2">
+        <p>Delivery date:</p>
+        @for (int i = 0; i < 4; i++)
+        {
+            var date = DateTime.Today.AddDays(i);
+            <div>
+                @Html.RadioButton("shipDate", date.ToString("yyyy-MM-dd"), i == 0)
+                @date.ToString("dd.MM.yyyy")
+            </div>
+        }
+    </div>
+
+    <div class="mb-2">
+        @Html.Label("products", "Products:")
+        @Html.ListBox("products", new MultiSelectList(products))
+    </div>
+
+    <input type="submit" value="Submit" class="btn btn-primary" />
+}
+
+@if (ViewBag.Message != null)
+{
+    <div class="alert alert-success mt-3">@ViewBag.Message</div>
+}
